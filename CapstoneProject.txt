@@ -1,0 +1,124 @@
+Dalona-
+
+List Items
+// a member's access as public
+public class ListItem {
+	String name;
+// a primitive data type
+	double price;
+// store whole numbers
+	int qty;
+	
+	public int getQty() {
+// current object will be returned
+		return this.qty;
+	}
+	public void setQty(int qty) {
+// current object in a method or constructor
+		this.qty = qty;
+	}
+	public String getName() {
+// current object will be returned
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getPrice() {
+// current object will be returned
+		return this.price;
+	}
+	public void setPrice(double price) {
+// current object in a method or constructor
+		this.price = price;
+	}
+	
+	public ListItem(String name, double price, int qty) {
+// current object in a method or constructor
+		this.name = name;
+		this.price = price;
+//remove the confusion between class attributes and parameters that have same names
+		this.qty = qty;
+	}
+Shopper
+Renee
+
+
+ListItem[] Items = {}; // array item list created
+
+static int numberofitems = 0; // integer number of items intialized to 0
+public static void main(String[] args) {
+try // Try condition to
+{
+boolean keepShopping = true; // boolean intialized to true when Y is inputted
+Scanner input = new Scanner(System.in); // input variable initialized as new scanner
+while (keepShopping == true) { // while condition is true keep shopping 
+System.out.print("Continue shopping? Y/N: "); // print message if Y is selected
+String answer = input.next(); // answer is the variable that holds Y/N
+keepShopping = ContinueShopping(answer);// determines whether to keep shopping
+if (keepShopping) { // if statement
+System.out.println("What would you like to add to cart? ");// print message
+answer = input.next(); // answer holds response
+double price = Math.round(GetPrice())/100;// price rounded up and divided by 100 
+System.out.println("Specify quantity:");// print messgae 
+int qty = input.nextInt(); // qty holds the quality of item
+addItem(new ListItem(answer, price, qty)); //dispaly answer amount of product and qty
+numberofitems++; // number of items incremented
+System.out.println(qty + " " + answer +" added to cart");// print qty items and message
+Osaede
+
+System.out.println("Goodbye! Thanks for shopping with us");
+}
+
+//Action code
+catch (Exception ex) {
+System.out.println(ex.getMessage());
+}
+}
+// number of items in cart
+public static void DisplayItems() {
+if (Items.length > 0) {
+System.out.println("\nYou have bought:\n");
+
+
+//  Loop over all the elements in the Items array
+for (int i = 0; i < Items.length; i++) {
+ListItem item = (ListItem)Items[i];
+String item_name = item.getName();
+double item_price = item.getPrice();
+int quantity = item.getQty();
+
+//list of items, their quantity and the price for each item
+System.out.println(quantity + " of " + item_name + " for " + item_price + " each");
+}
+}
+Yasin
+private static boolean ContinueShopping(String answer) { //creating private boolean for variables and the header of a method
+boolean yes = true; // cheking answer y/n
+if (answer.equals(String.valueOf("N")) | (answer.equals(String.valueOf("n")))) {
+yes = false;
+}
+return yes;
+}
+
+private static double GetPrice() { // creating doubles
+Random rand = new Random();
+float randomNum = rand.nextFloat();
+return 100 * (randomNum * 10); //gettin exact number
+}
+
+public static void addItem(ListItem x) // Calling ListItems
+   {
+       int i;
+       //turn array into ArrayList using asList() method
+       List arrList = new ArrayList( Arrays.asList(Items));       // adding a new element to the array
+       arrList.add(x);       // Transforming the ArrayList into an array
+       Items = (ListItem[]) arrList.toArray(Items);
+   }
+
+/*
+ * private static void AddItemToCart(ListItem itm) { myCart.add(itm);
+ *
+ * }
+ */
+}
